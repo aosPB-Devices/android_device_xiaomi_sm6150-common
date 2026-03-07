@@ -54,7 +54,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    vendor/aosp/config/device_framework_matrix.xml
 
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/configs/hidl/manifest.xml
 DEVICE_MANIFEST_FILE += hardware/qcom-caf/sm8150/media/conf_files/sm6150/c2_manifest.xml
@@ -85,7 +85,7 @@ BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 TARGET_USES_ION := true
 
 # Partitions
--include vendor/lineage/config/BoardConfigReservedSize.mk
+-include vendor/aosp/config/BoardConfigReservedSize.mk
 
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 
@@ -139,14 +139,6 @@ include device/qcom/sepolicy_vndr/SEPolicy.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/public
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
-
-# Soong
-SOONG_CONFIG_NAMESPACES += xiaomiSm6150Vars
-SOONG_CONFIG_xiaomiSm6150Vars += \
-    livedisplay_support_anti_flicker \
-    livedisplay_support_sunlight_enhancement
-SOONG_CONFIG_xiaomiSm6150Vars_livedisplay_support_anti_flicker ?= false
-SOONG_CONFIG_xiaomiSm6150Vars_livedisplay_support_sunlight_enhancement ?= true
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
